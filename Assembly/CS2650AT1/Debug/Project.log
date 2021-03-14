@@ -1,0 +1,15 @@
+﻿Build started 3/31/2014 6:47:21 PM.
+     1>Project "F:\CS\CS 2650\CS2650AT1\Project.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\CS2650P1.unsuccessfulbuild".
+       _MASM:
+         Assembling [Inputs]...
+         cmd.exe /C "C:\Users\Aaron\AppData\Local\Temp\tmpe877a7bc44a74dd591d0a2fe6c2a49b1.cmd"
+         ml.exe /c /nologo /Zi /Fo"Debug\CS2650_Aaron_Shaneen_P1.obj" /I "c:\Irvine" /W3 /errorReport:prompt  /TaCS2650_Aaron_Shaneen_P1.asm
+     1>Irvine32.inc(5): fatal error A1000: cannot open file : SmallWin.inc
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\BuildCustomizations\masm.targets(49,5): error MSB3721: The command "ml.exe /c /nologo /Zi /Fo"Debug\CS2650_Aaron_Shaneen_P1.obj" /I "c:\Irvine" /W3 /errorReport:prompt  /TaCS2650_Aaron_Shaneen_P1.asm" exited with code 1.
+     1>Done Building Project "F:\CS\CS 2650\CS2650AT1\Project.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.19

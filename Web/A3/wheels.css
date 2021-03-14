@@ -1,0 +1,109 @@
+/*
+   Mountain Wheels Style Sheet
+   Author: Aaron Shaneen
+   Date:   Sept 23, 2015
+
+   Filename:         wheel.css
+   Supporting Files: body.jpg, block.jpg, h1back.jpg
+*/
+
+body
+{
+    font-family: Verdana, Helvetica, Sans-Serif;
+	margin: 0px;
+	background-color: white;
+	background-image: url("body.jpg");
+	background-repeat: repeat-y;
+}
+
+#column1
+{
+    width: 140px;
+	padding-left: 10px;
+	padding-top: 20px;
+	float: left;
+}
+
+#column2
+{
+    width: 40%;
+	float: left;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}
+
+#column3
+{
+    width: 40%;
+	float: left;
+}
+
+h1
+{
+    text-align: center;
+	height: 100px;
+	margin: 0px;
+	background-color: white;
+	background-image: url("h1back.jpg");
+	background-repeat: repeat-x;
+	border-bottom: 1px solid black;
+}
+
+h2
+{
+    text-indent: 30px;
+	color: white;
+	background-color: rgb(108, 87, 12);
+	letter-spacing: 8pt;
+	margin: 0px;
+	font-variant: small-caps;
+}
+
+h3
+{
+    margin-left: 10px;
+}
+
+p
+{
+    margin-top: 10px;
+	margin-left: 10px;
+	margin-bottom: 20px;
+	margin-right: 20px;
+}
+
+blockquote
+{
+    width: 200px;
+	padding: 10px;
+	font-size: 16pt;
+	color: white;
+	border: 3px solid black;
+	background-color: rgb(255, 204, 0);
+	background-image: url("block.jpg");
+	background-repeat: repeat-x;
+	margin: 5px 10px 5px 5px;
+	float: right;
+}
+
+a
+{
+ 	display: block;
+    padding: 2px;
+	margin: 5px 5px 5px 0px;
+	font-size: 10pt;
+	text-decoration: none;
+	border: 1px solid black;
+	background-color: rgb(255, 255, 192);		
+}
+
+address
+{
+    text-align: center;
+	font-size: 10pt;
+	font-variant: normal;
+	background-color: white;
+	padding: 10px;
+	border: 1px solid black;
+	clear: both;
+}

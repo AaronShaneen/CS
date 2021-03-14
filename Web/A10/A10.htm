@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<!--
+	A10.htm
+	Aaron Shaneen
+	Nov 19, 2015
+-->
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		
+		<title>JQuery Examples</title>
+
+		<meta charset="utf-8">
+		
+		<style type="text/css">
+			button {margin: 5px 0px 5px 0px;}
+			div {margin: 5px 0px 5px 0px; height: 100px; width: 100px; background: grey;}
+		</style>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		
+		<script>
+			$(document).ready(function()
+			{
+				<!-- JQUERY EFFECTS -->
+		
+				<!-- Hide/Show Box -->
+				$("#hideBtn").click(function()
+				{
+					$("#hideDiv").toggle();
+				});
+				
+				<!-- Fade Box -->
+				$("#fadeBtn").click(function()
+				{
+					$("#fadeDiv").fadeToggle("slow");
+				});
+						
+				<!-- Slide Box -->
+				$("#slideBtn").click(function()
+				{
+					$("#slideDiv").slideToggle("up");
+				});
+				
+				<!-- Animate Box -->
+				$("#animateBtn").click(function()
+				{
+					$("#animateDiv").animate({background: 'red'});
+				});
+				
+				<!-- JQUERY WIDGETS -->
+				
+				<!-- Accordion Heading -->
+				$(function()
+				{
+    				$("#accordion").accordion();
+  				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<!-- JQUERY EFFECTS -->
+		
+		<!-- Hide/Show Box -->		
+		<p>Click to hide/show the box</p>
+		
+		<button id="hideBtn">Do It!</button>
+		
+		<div id="hideDiv"></div>
+
+		<!-- Fade Box -->		
+		<p>Click to fade the box</p>
+		
+		<button id="fadeBtn">Do It!</button>
+		
+		<div id="fadeDiv"></div>
+		
+		<!-- Slide Box -->
+		<p>Click to slide the box</p>
+		
+		<button id="slideBtn">Do It!</button>
+		
+		<div id="slideDiv"></div>
+		
+		<!-- Animate Box -->
+		<p>Click to animate the box</p>
+		
+		<button id="animateBtn">Do It!</button>
+		
+		<div id="animateDiv"></div>
+		
+		<!-- JQUERY WIDGETS -->
+		
+		<!-- Accordion Heading -->
+		<h1 id="accordion">Accordion</h1>
+	</body>
+</html>

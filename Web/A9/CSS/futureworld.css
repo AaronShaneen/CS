@@ -1,0 +1,49 @@
+/*
+	futureworld.css
+	Aaron Shaneen
+	Assignment 9
+	Nov 13, 2015
+*/
+
+h1
+{
+	font-family: Century Gothic, sans-serif;
+	text-align: center;
+	color: white;
+	margin: 50px;
+}
+
+h2 a
+{
+	font-family: Century Gothic, sans-serif;
+	color: white;
+	text-decoration: none;
+}
+
+h2
+{
+	text-align: center;
+}
+
+body
+{
+	background-image: url("../Images/outerspace.jpg");
+	background-repeat: y-repeat;
+}
+
+.video
+{
+	display: block;
+	margin: auto;
+	padding: 1px;
+	border: 1px solid white;
+}
+
+section
+{
+	display: block;
+	font-family: Century Gothic, sans-serif;
+	text-align: center;
+	color: white;
+	margin: 50px;
+}

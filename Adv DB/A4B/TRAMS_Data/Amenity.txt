@@ -1,0 +1,26 @@
+1|Fireplace
+2|Balcony
+3|Jetted Tub
+4|Full Kitchen
+5|Kitchenette
+6|In Room Safe
+7|Microwave
+8|Sleeper Sofa
+9|Mini Bar
+10|Full Size Refrigerator
+11|Mini Fridge
+12|Handicapped Access
+13|Free Wi-Fi
+14|Restaurant
+15|Swimming Pool
+16|Sauna
+17|Exercise Room
+18|Tennis Court
+19|Jacuzzi
+20|Free Parking
+21|Free Breakfast
+22|Laundry Service
+23|Arcade
+24|Pet Friendly
+25|Shuttle Service
+26|Business Center

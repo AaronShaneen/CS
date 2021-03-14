@@ -1,0 +1,7 @@
+1|Summit|UT
+2|Horry|SC
+3|Gallitan|MT
+4|British Columbia|BC
+5|Orange|FL
+6|Quintana Roo|MX
+7|Fairbanks|AK

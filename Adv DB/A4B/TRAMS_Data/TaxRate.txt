@@ -1,0 +1,18 @@
+1|7.15|G|Summit County Sales Tax|1/1/2015||1
+2|11.15|L|Summit County Lodging Tax|1/1/2015||1
+3|8.15|F|Summit County Food and Beverage Tax|1/1/2015||1
+4|5|G|County Sales Tax|1/1/2015|9/30/2015|2
+5|11.25|L|State Lodging Tax|1/1/2015|9/30/2015|2
+6|7|L|Montana Bed Tax|1/1/2015||3
+7|15|G|GST - British Columbia|1/1/2015||4
+8|15|L|Lodging Tax - British Columbia|1/1/2015||4
+9|7.25|G|Orange County Sales Tax|1/1/2015|6/30/2015|5
+10|13.75|L|Occupancy Tax|1/1/2015|6/30/2015|5
+11|10|G|GST 10%|1/1/2015||6
+12|18|L|Occupancy Tax|1/1/2015||6
+13|5|L|Alaska State Occupancy Tax|1/1/2015||7
+14|6.5|F|Fairbanks County Food & Beverage Tax|1/1/2015||7
+15|6|G|County Sales Tax|10/1/2015||2
+16|12.25|L|State Lodging Tax|10/1/2015||2
+17|6.5|G|Orange County Sales Tax|7/1/2015||5
+18|14.5|L|Occupancy Tax|7/1/2015||5

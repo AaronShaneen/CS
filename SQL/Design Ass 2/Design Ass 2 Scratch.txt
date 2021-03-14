@@ -1,0 +1,7 @@
+(PK)(FK) ISBN, authFirst, authLast,
+     custFirst, custLast, Reviewer
+(PK) ISBN -> Title, Price
+(PK) Title, authFirst, authLast -> authNum
+(PK) Reviewer -> reviewDate, Review
+(PK) custFirst, custLast -> custEmail, custAddress, custPhone
+(PK) ISBN, custFirst, custLast -> purchaseDate

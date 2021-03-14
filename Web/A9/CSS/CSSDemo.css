@@ -1,0 +1,14 @@
+/*
+	CSSDemo.css
+	Aaron Shaneen
+	Assignment 9
+	Nov 13, 2015
+*/
+
+h1
+{
+	text-decoration: none;
+	text-align: center;
+	text-shadow: 1px 1px;
+	background: linear-gradient(left, orange, green);
+}

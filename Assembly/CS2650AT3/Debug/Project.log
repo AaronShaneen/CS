@@ -1,0 +1,22 @@
+﻿Build started 4/9/2014 9:13:07 AM.
+     1>Project "E:\CS\CS 2650\CS2650AT3\Project.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\CS2650P3.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       _MASM:
+         Assembling [Inputs]...
+         cmd.exe /C "C:\Users\w01193691\AppData\Local\Temp\8\tmp576872492b4147b5a96834d0fec460e3.cmd"
+         ml.exe /c /nologo /Zi /Fo"Debug\CS2650P3.obj" /I "c:\Irvine" /W3 /errorReport:prompt  /TaCS2650P3.asm
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\CS\CS 2650\CS2650AT3\Debug\CS2650P3.exe" /NOLOGO /LIBPATH:c:\Irvine user32.lib irvine32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\CS2650P3.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\CS\CS 2650\CS2650AT3\Debug\CS2650P3.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE:NO /IMPLIB:"E:\CS\CS 2650\CS2650AT3\Debug\CS2650P3.lib" /MACHINE:X86 Debug\CS2650P3.obj
+         LINK : E:\CS\CS 2650\CS2650AT3\Debug\CS2650P3.exe not found or not built by the last incremental link; performing full link
+         Project.vcxproj -> E:\CS\CS 2650\CS2650AT3\Debug\CS2650P3.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\CS\CS 2650\CS2650AT3\Debug\CS2650P3.exe;#1" /manifest Debug\CS2650P3.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Debug\CS2650P3.unsuccessfulbuild".
+         Touching "Debug\CS2650P3.lastbuildstate".
+     1>Done Building Project "E:\CS\CS 2650\CS2650AT3\Project.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:10.35

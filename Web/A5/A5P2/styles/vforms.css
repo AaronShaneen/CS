@@ -1,0 +1,109 @@
+/*
+	vform.css
+	Aaron Shaneen
+	Assignment 5
+	Oct 5, 2015
+*/
+
+fieldset
+{
+	background-color: rgb(237, 233, 223);
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+fieldset span
+{
+	color: red;
+}
+
+label.blockLabel
+{
+	display: block;
+	position: relative;
+	width: 450px;
+	margin-top: 12px;
+	margin-bottom: 12px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.blockLabel input
+{
+	position: absolute;
+	left: 140px;
+}
+
+input[name=fName], input[name=lName]
+{
+	width: 250px;
+}
+
+input[name=street1], input[name=street2]
+{
+	width: 350px;
+}
+
+input[name=phone], input[name=city]
+{
+	width: 150px;
+}
+
+input[name=state]
+{
+	width: 40px;
+}
+
+input[name=zip]
+{
+	width: 80px;
+}
+
+#experience
+{
+	width: 450px;
+	padding: 5px;
+}
+
+#interestFields
+{
+	position: relative;
+	width: 450px;
+	height: 120px;
+	padding: 5px;
+}
+
+#interestFields label
+{
+	position: absolute;
+}
+
+#interest1, #interest2, #interest3
+{
+	top: 20px;
+}
+
+#interest4, #interest5, #interest6
+{
+	top: 50px;
+}
+
+#interest7, #interest8, #interest9
+{
+	top: 80px;
+}
+
+#interest1, #interest4, #interest7
+{
+	left: 0px;
+}
+
+#interest2, #interest5, #interest8
+{
+	left: 140px;
+}
+
+#interest3, #interest6, #interest9
+{
+	left: 280px;
+}

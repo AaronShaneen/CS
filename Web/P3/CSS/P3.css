@@ -1,0 +1,54 @@
+/*
+	P3.css
+	Aaron Shaneen
+	CS 2350
+	Nov 11, 2015
+*/
+
+body
+{
+	background-image: url("../Images/henna2.jpg");
+}
+
+img
+{
+	border: solid black 1pt;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.center
+{
+	width: auto;
+	margin: 0 auto;
+}
+
+#words
+{
+	border: solid black 1pt;
+	background-image: url("../Images/henna1.jpg");
+	padding: 5px;
+	width: 75%;
+	margin: 10px auto 10px auto;
+	font-size: 14pt;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	text-align: center;
+}
+
+#times ul
+{
+	font-size: 16px;
+}
+
+#link
+{
+	text-decoration: none;
+	font-size: 24pt;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+#follow div a img
+{
+	margin: 5px auto;
+}

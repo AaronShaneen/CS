@@ -1,0 +1,57 @@
+TITLE CS2650 Assembler Assignment #4 Loop example
+
+; Student Name:
+; Assignment Due Date:
+
+INCLUDE Irvine32.inc
+.data
+;--------- Enter Data Here
+; One per suffix
+vTh BYTE "th",0
+vSt BYTE "st",0
+vNd BYTE "nd",0
+vRd BYTE "rd",0
+
+.code
+main PROC
+;--------- Enter Code Below Here
+LoopIt:
+	CALL ReadInt ; This is for this example only, not your assignment
+	CMP eax, 0
+	JZ TheEnd ; go to this label, you are done
+	CMP eax, 1
+	JZ dSt 
+	CMP eax, 2
+	JZ dNd
+	CMP eax, 3
+	JZ dRd 
+	CMP eax, 21
+	JZ dSt
+	CMP eax, 22
+	JZ dNd
+	CMP eax, 23
+	JZ dRd
+	CMP eax, 31
+	JZ dSt
+	
+	MOV edx, offset[vTh] ; default th suffix
+	JMP Display
+	; Define labels
+dSt:
+	MOV edx, offset[vSt]
+	JMP Display
+dNd:
+	MOV edx, offset[vNd]
+	JMP Display
+dRd:
+	MOV edx, offset[vRd]
+	JMP Display
+Display:
+	call WriteString
+	JMP LoopIt
+
+TheEnd:
+	exit
+main ENDP
+
+END main

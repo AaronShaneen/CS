@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClassExamplesFunctions", "ClassExamplesFunctions\ClassExamplesFunctions.vcxproj", "{BFAE48EE-6E90-4241-B3BF-6B580144ABC7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFAE48EE-6E90-4241-B3BF-6B580144ABC7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BFAE48EE-6E90-4241-B3BF-6B580144ABC7}.Debug|Win32.Build.0 = Debug|Win32
+		{BFAE48EE-6E90-4241-B3BF-6B580144ABC7}.Release|Win32.ActiveCfg = Release|Win32
+		{BFAE48EE-6E90-4241-B3BF-6B580144ABC7}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

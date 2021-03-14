@@ -1,0 +1,36 @@
+TITLE CS2650 Assembler Assignment #4 Loop example
+
+; Student Name:
+; Assignment Due Date:
+
+INCLUDE Irvine32.inc
+.data
+;--------- Enter Data Here
+; One per suffix
+; This methods uses more memory, but less operands
+vSuffixes BYTE "--stndrdthththththththththththththththththstndrdthththththththst",0
+vSuffix BYTE "--",0 ; data and zero terminated
+
+.code
+main PROC
+;--------- Enter Code Below Here
+LoopIt:
+	CALL ReadInt ; This is for this example only, not your assignment
+	CMP eax, 0
+	JZ TheEnd ; go to this label, you are done
+	; -- Suffix Code ----
+	SHL eax, 1 
+	MOV edx, OFFSET [vSuffixes]
+	ADD edx, eax
+	MOV bx, WORD ptr [edx] 
+	MOV WORD ptr [vSuffix], bx
+	MOV edx, OFFSET [vSuffix]
+	CALL WriteString
+	; -- Suffix Code ----
+	JMP LoopIt
+
+TheEnd:
+	exit
+main ENDP
+
+END main

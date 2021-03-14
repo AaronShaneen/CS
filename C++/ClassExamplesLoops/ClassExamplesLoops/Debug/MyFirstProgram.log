@@ -1,0 +1,13 @@
+﻿Build started 1/23/2014 12:21:06 PM.
+     1>Project "E:\CS\CS 1410\ClassExamples\MyFirstProgram\MyFirstProgram.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ClassExamples1.cpp ClassExamples2.cpp
+         ClassExamples2.cpp
+         ClassExamples1.cpp
+     1>e:\cs\cs 1410\classexamples\myfirstprogram\classexamples1.cpp(36): error C2065: 'i' : undeclared identifier
+         Generating Code...
+     1>Done Building Project "E:\CS\CS 1410\ClassExamples\MyFirstProgram\MyFirstProgram.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:07.35

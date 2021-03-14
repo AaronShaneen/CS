@@ -1,0 +1,27 @@
+/*
+	P1.css
+	Aaron Shaneen
+	Oct 13, 2015
+*/
+
+h1, h2, h3
+{
+	text-align: center;
+	background-color: rgb(117, 71, 25);
+	color: rgb(153, 102, 0);
+}
+
+h2 a
+{
+	text-decoration: none;
+	text-align: center;
+	background-color: rgb(117, 71, 25);
+	color: rgb(153, 102, 0);
+}
+
+#pageCenter
+{
+	text-align: left;
+  	width: 862px;
+  	margin: 0 auto;
+}

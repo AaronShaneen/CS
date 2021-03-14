@@ -1,0 +1,15 @@
+1|Lodging|L
+2|Occupancy Tax|N
+3|Food and Beverage|F
+4|Food and Beverage Tax|N
+5|Deposit|L
+6|Deposit Lodging Tax|N
+7|Deposit Refund|L
+8|Deposit Lodging Tax Refund|N
+9|Discount|N
+10|Payment|N
+11|Refund|N
+12|Pay Per View|G
+13|Internet|G
+14|Gym/Spa|G
+15|Goods and Services Tax|N

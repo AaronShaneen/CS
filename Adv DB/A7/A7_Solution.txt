@@ -1,0 +1,315 @@
+﻿USE Shaneen_TRAMS
+GO
+
+-- Reuse stored procedure from previous assignment in this script due to being blown away with reset :)
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE SPECIFIC_NAME = 'sp_InsertReservation' ) 
+    DROP PROCEDURE sp_InsertReservation;
+GO
+
+
+CREATE PROCEDURE sp_InsertReservation
+	@p_ResDate smalldatetime,
+	@p_ResStatus char(1),
+	@p_ResCheckInDate date,
+	@p_ResNights tinyint,
+	@p_ResQuotedRate smallmoney,
+	@p_ResDepositPaid smallmoney,
+	@p_ResCCAuth varchar(25),
+	@p_UnitRateID smallint,
+	@p_PersonID int
+AS
+	INSERT INTO RESERVATION VALUES ( @p_ResDate, @p_ResStatus, @p_ResCheckInDate, @p_ResNights, @p_ResQuotedRate, @p_ResDepositPaid, @p_ResCCAuth, @p_UnitRateID, @p_PersonID) 
+GO
+
+PRINT ' 1.  Write a user-defined function named dbo.GetLodgingTaxRate which accepts a PropertyID and date. 
+ The function will return the taxrate (as decimal) for the PropertyID where the taxtype = "L" (for Lodging Tax), 
+ and the date falls between the start and end dates of the taxrate found.  
+ Note:  If there is not a lodging type tax rate for the property (or the date is out of range), return 0 for the taxrate.'
+PRINT ''
+
+IF EXISTS(SELECT name FROM sys.objects WHERE name = N'fn_GetLodgingTaxRate' ) 
+    DROP FUNCTION fn_GetLodgingTaxRate;
+GO
+
+CREATE FUNCTION dbo.fn_GetLodgingTaxRate
+(
+	@PropertyID smallint,
+	@Date datetime
+)
+RETURNS decimal(5,2)
+AS
+	BEGIN
+		DECLARE @result decimal(5,2)
+		SET @result = 0
+		SET @result = (
+			SELECT TR.TaxRate
+			FROM TAXRATE TR
+			JOIN TAXLOCATION TL ON TL.TaxLocationID = TR.TaxLocationID
+			JOIN PROPERTY P ON P.TaxLocationID = TL.TaxLocationID
+			WHERE P.PropertyID = @PropertyID
+			AND TR.TaxType = 'L'
+			AND @Date BETWEEN TR.TaxStartDate AND TR.TaxEndDate
+		) / 100
+		IF @result is null
+			SET @result = 0
+		RETURN @result
+	END
+GO
+
+PRINT ' 2.  Write a user-defined function named dbo.CalculateDeposit which accepts a UnitRateID, and Check-in Date.  
+ The function will return smallmoney.  The calculated deposit is the Current Unit Rate * (1+dbo.GetLodgingTaxRate(PropertyID, CheckinDate).  
+ Note:  This function must call function #1.'
+PRINT ''
+
+IF EXISTS(SELECT name FROM sys.objects WHERE name = N'fn_CalculateDeposit' ) 
+    DROP FUNCTION fn_CalculateDeposit;
+GO
+
+CREATE FUNCTION dbo.fn_CalculateDeposit
+(
+	@UnitRateID smallint,
+	@CheckInDate datetime
+)
+RETURNS smallmoney
+AS
+	BEGIN
+		DECLARE @result smallmoney, @unitRate smallmoney
+		SET @result = 0
+		SET @unitRate = 0
+	
+		SET @unitRate = (
+			SELECT UR.UnitRate
+			FROM UNITRATE UR
+			WHERE UR.UnitRateID = @UnitRateID
+			AND @CheckInDate BETWEEN UR.UnitRateBeginDate AND UR.UnitRateEndDate
+		)
+		SET @result = @unitRate * (1 + dbo.fn_GetLodgingTaxRate((SELECT UR.PropertyID FROM UNITRATE UR WHERE UR.UnitRateID = @UnitRateID), @CheckInDate))
+		IF @result is null
+			SET @result = 0
+		RETURN @result
+	END
+GO
+
+PRINT 'The following will demonstrate the above functions....'
+PRINT ''
+
+-- Variables for the below Proc calls
+Declare @TodaysDate smalldatetime, @Deposit smallmoney
+SET @TodaysDate = getdate()
+
+PRINT '3A.  Make a new Reservation using the following information:
+
+-- ResDate = Today
+-- ResStatus = "A"
+-- Check-in Date = "15 Aug 2015"
+-- Nights = 3
+-- Quoted Rate = dbo.CalculateDeposit
+-- Deposit Paid = dbo.CalculateDeposit
+-- CC Auth = "3A Reults"
+-- Unit Rate ID = 13
+-- Person ID = 7
+'
+
+-- Set the deposit amount for unit rate
+SET @Deposit = (SELECT dbo.fn_CalculateDeposit(13, '15 Aug 2015'))
+EXEC	[dbo].[sp_InsertReservation]
+		@p_ResDate = @TodaysDate,
+		@p_ResStatus = N'A',
+		@p_ResCheckInDate = '15 Aug 2015',
+		@p_ResNights = 3,
+		@p_ResQuotedRate = @Deposit,
+		@p_ResDepositPaid = @Deposit,
+		@p_ResCCAuth = N'3A Results',
+		@p_UnitRateID = 13,
+		@p_PersonID = 7
+
+PRINT ''
+PRINT '3B. Make a new Reservation using the following information:
+
+-- ResDate = Today
+-- ResStatus = "A"
+-- Check-in Date = "27 Aug 2015"
+-- Nights = 3
+-- Quoted Rate = dbo.CalculateDeposit
+-- Deposit Paid = dbo.CalculateDeposit
+-- CC Auth = "3B Reults"
+-- Unit Rate ID = 21
+-- Person ID = 8'
+
+-- Set the deposit amount for unit rate ID
+SET @Deposit = (SELECT dbo.fn_CalculateDeposit(21, '27 Aug 2015'))
+EXEC	[dbo].[sp_InsertReservation]
+		@p_ResDate = @TodaysDate,
+		@p_ResStatus = N'A',
+		@p_ResCheckInDate = '27 Aug 2015',
+		@p_ResNights = 3,
+		@p_ResQuotedRate = @Deposit,
+		@p_ResDepositPaid = @Deposit,
+		@p_ResCCAuth = N'3B Results',
+		@p_UnitRateID = 21,
+		@p_PersonID = 8
+
+PRINT ''
+PRINT '3C. Make a new Reservation using the following information:
+
+-- ResDate = Today
+-- ResStatus = "A"
+-- Check-in Date = "25 Sep 2015"
+-- Nights = 3
+-- Quoted Rate = dbo.CalculateDeposit
+-- Deposit Paid = dbo.CalculateDeposit
+-- CC Auth = "3C Reults"
+-- Unit Rate ID = 29
+-- Person ID = 9'
+
+-- Set the deposit amount for unit rate
+SET @Deposit = (SELECT dbo.fn_CalculateDeposit(29, '25 Sep 2015'))
+EXEC	[dbo].[sp_InsertReservation]
+		@p_ResDate = @TodaysDate,
+		@p_ResStatus = N'A',
+		@p_ResCheckInDate = '25 Sep 2015',
+		@p_ResNights = 3,
+		@p_ResQuotedRate = @Deposit,
+		@p_ResDepositPaid = @Deposit,
+		@p_ResCCAuth = N'3C Results',
+		@p_UnitRateID = 29,
+		@p_PersonID = 9
+
+PRINT ''
+PRINT '3D.  SELECT * FROM Reservation to show the results'
+PRINT ''
+SELECT * FROM RESERVATION
+
+GO
+
+PRINT '4A.  Write a user-defined function named dbo.CalculateCancellationFees that accepts a reservationID and CancellationDate, 
+-- and returns a TABLE with the ReservationID, Original Check in Date, Deposit Paid, and Cancellation Charge (determined below).  
+
+-- Cancellation Policies:
+-- Regardless of property or season, all cancellations made 
+-- with more than 30 days’ notice are entitled to a 100% refund of the deposit paid (less a $25 administration fee).
+-- 14-30 days’ cancellation notice (75% refund, less a $25 administration fee)
+-- 8-13 days’ cancellation notice (50% refund, less a $25 administration fee)
+-- 7 days of less cancellation notice – No refund'
+
+IF EXISTS(SELECT name FROM sys.objects WHERE name = N'fn_CalculateCancellationFees' ) 
+    DROP FUNCTION fn_CalculateCancellationFees;
+GO
+
+CREATE FUNCTION dbo.fn_CalculateCancellationFees
+(
+	@ReservationID smallint,
+	@CancellationDate datetime
+)
+RETURNS @CancellationFees TABLE
+(
+	[ReservationID] [int] NOT NULL,
+	[Original Check in Date] [date] NOT NULL,
+	[Deposit Paid] [smallmoney] NOT NULL,
+	[Cancellation Charge] [smallmoney] NOT NULL
+)
+AS
+	BEGIN
+		INSERT INTO @CancellationFees
+		SELECT 
+		  RESERVATION.ReservationID
+		, RESERVATION.ResCheckInDate
+		, RESERVATION.ResDepositPaid
+		, CASE
+			WHEN DATEDIFF(dd, @CancellationDate, RESERVATION.ResCheckInDate) >= 30
+			THEN 25
+			WHEN DATEDIFF(dd, @CancellationDate, RESERVATION.ResCheckInDate) BETWEEN 14 AND 30
+			THEN (RESERVATION.ResDepositPaid * 0.25) + 25
+			WHEN DATEDIFF(dd, @CancellationDate, RESERVATION.ResCheckInDate) BETWEEN 8 AND 13
+			THEN (RESERVATION.ResDepositPaid * 0.50) + 25
+			ELSE RESERVATION.ResDepositPaid
+		  END AS [Cancellation Charge]
+		FROM RESERVATION
+		WHERE ReservationID = @ReservationID
+	RETURN
+	END
+GO
+
+PRINT ''
+PRINT '4B.  Demonstrate 4A by passing in the last 3 reservations you created (in 3A, 3B, and 3C), 
+       using a cancellation date of 14 Aug 2015.'
+PRINT ''
+
+SELECT * FROM dbo.fn_CalculateCancellationFees(46, '14 Aug 2015')
+
+SELECT * FROM dbo.fn_CalculateCancellationFees(47, '14 Aug 2015')
+
+SELECT * FROM dbo.fn_CalculateCancellationFees(48, '14 Aug 2015')
+ 
+PRINT '5.  Write a user-defined function called fn_QuotedRate that accepts a begin and end date as well as a PropertyID and UnitTypeID 
+ and returns a Table called @ValidRates.  This table should show the MAXIMUM UnitRate (if a date range crosses over multiple seasons/rates) 
+ as well as the Unit Type Description,  and an additional field for the Unit Rate Description (or used to hold a custom error message).
+ 
+ For example:  If a unit has a rate of $100 between 1 Jan and 1 Feb, and $150 between 2 Feb and 28 Feb, 
+ and the UDF passes in a date range of 15 Jan to 7 Feb, then the $150 result would be returned.'
+PRINT ''
+
+IF EXISTS(SELECT name FROM sys.objects WHERE name = N'fn_QuotedRate' ) 
+    DROP FUNCTION fn_QuotedRate;
+GO
+
+CREATE FUNCTION dbo.fn_QuotedRate
+(
+	@BeginDate	date,
+	@EndDate	date,
+	@PropertyID smallint,
+	@UnitTypeID TINYINT
+)
+RETURNS @ValidRates TABLE
+(
+	[UnitRate] smallmoney NULL,
+	[UnitTypeDescription] varchar(20) NULL,
+	[UnitRateDescription] varchar(50) NOT NULL
+)
+AS
+	BEGIN
+		IF DATEDIFF(dd, @BeginDate, @EndDate) < 0
+			BEGIN
+				INSERT INTO @ValidRates
+				SELECT
+				  ''
+				, ''
+				, 'ERROR!! Begin Date must be less than End Date'
+			END
+		ELSE
+			INSERT INTO @ValidRates
+			SELECT TOP 1
+			  MAX(UR.UnitRate)
+			, UT.UnitTypeDescription
+			, UR.UnitRateDescription
+			FROM UNITRATE UR
+			INNER JOIN UNITTYPE UT ON UT.UnitTypeID = UR.UnitTypeID
+			WHERE @PropertyID = UR.PropertyID
+			AND @UnitTypeID = UR.UnitTypeID 
+			AND (
+				@BeginDate BETWEEN UR.UnitRateBeginDate AND UR.UnitRateEndDate
+				OR @EndDate BETWEEN UR.UnitRateBeginDate AND UR.UnitRateEndDate
+			)
+			GROUP BY 
+			  UT.UnitTypeDescription
+			, UR.UnitRateDescription
+	RETURN
+	END
+GO
+
+PRINT ''
+PRINT '5A.  Demonstrate the Function by passing in the Property ID 10000, Begin Date 1 July 2015,  End Date 30 November 2015, and UnitTypeID 4.'
+PRINT ''
+
+ SELECT * FROM dbo.fn_QuotedRate('1 July 2015', '30 November 2015', 10000, 4)
+
+PRINT '5B.  Demonstrate the Function by passing in the Property ID 11000, Begin Date 1 July 2015,  End Date 30 November 2015, and UnitTypeID 4.'
+PRINT ''
+
+ SELECT * FROM dbo.fn_QuotedRate('1 July 2015', '30 November 2015', 11000, 4)
+
+PRINT '5C.  Demonstrate the Function by passing in the Property ID 11000, Begin Date 30 November 2015,  End Date 1 July 2015*, and UnitTypeID 4.'  
+PRINT '	*Yes, these dates are incorrect, because I want you to demonstrate to me how to do "error handling" in your UDF.'
+PRINT ''
+
+ SELECT * FROM dbo.fn_QuotedRate('30 November 2015', '1 July 2015', 10000, 4)

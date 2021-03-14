@@ -1,0 +1,47 @@
+TITLE CS2650 Assembler Assignment #4 Loop example
+
+; Student Name:
+; Assignment Due Date:
+
+INCLUDE Irvine32.inc
+.data
+;--------- Enter Data Here
+; One per suffix
+; This methods uses more memory, but less operands
+; 13 carriage return, 10 is line feed
+; You DO NOT need this in the assigment
+vYear BYTE "----", 13,10,0
+.code
+main PROC
+;--------- Enter Code Below Here
+LoopIt:
+	CALL ReadInt ; This is for this example only, not your assignment
+	CMP eax, 0
+	JZ TheEnd ; go to this label, you are done
+	; -- Year to Ascii code -----------
+	XOR dx, dx ; clear dx since we only need ax (year fits there)
+	MOV bx, 1000
+	DIV bx
+	ADD al, 30h ; this number is small 1-9 (thousand)
+	MOV BYTE ptr [vYear], al
+	MOV ax, dx
+	XOR dx, dx ; remainder
+	MOV bx, 100 ; Now do the one hundred
+	div bx
+	ADD al, 30h
+	MOV BYTE ptr [vYear+1], al
+	MOV ax, dx
+	MOV bl, 10 ; we are back to 8 bit division
+	DIV bl
+	ADD ax, 3030h
+	MOV WORD ptr [vYear+2], ax
+	MOV edx, OFFSET [vYear]
+	CALL WriteString
+	; -- Year to Ascii code -----------
+	JMP LoopIt
+
+TheEnd:
+	exit
+main ENDP
+
+END main

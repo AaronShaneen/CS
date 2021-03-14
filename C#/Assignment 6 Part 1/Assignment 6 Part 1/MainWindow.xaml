@@ -1,0 +1,81 @@
+﻿<Window x:Class="Assignment_6_Part_1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Assignment_6_Part_1"
+        mc:Ignorable="d"
+        Title="Flight Seating Arrangement" Height="350" Width="525" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <ComboBox x:Name="flightComboBox" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="387,10,0,0" VerticalAlignment="Top" Width="120" Height="26" SelectionChanged="chooseFlight_SelectionChanged"/>
+        <ComboBox x:Name="passengerComboBox" HorizontalContentAlignment="Center" HorizontalAlignment="Left" IsEnabled="False" Margin="387,41,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.525,1.364" Height="26"/>
+        <Label x:Name="chooseFlightLabel" Content="Choose Flight:" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="297,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.211,-0.808"/>
+        <Label x:Name="choosePassengerLabel" Content="Choose Passenger:" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="273,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.211,-0.808"/>
+        <Label x:Name="passengerSeatLabel" Content="Passenger's Seat:" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="282,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.211,-0.808"/>
+        <Button x:Name="changeSeatButton" Content="Change Seat" HorizontalAlignment="Left" IsEnabled="False" Margin="387,125,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.507,1.35"/>
+        <Button x:Name="deletePassengerButton" Content="Delete Passenger" HorizontalAlignment="Left" IsEnabled="False" Margin="387,150,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.507,1.35"/>
+        <Button x:Name="addPassengerButton" Content="Add Passenger" HorizontalAlignment="Left" IsEnabled="False" Margin="262,150,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.507,1.35" Click="navFromMainToAdd"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="430,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" TextAlignment="Center" Width="34"/>
+        <GroupBox x:Name="colorKeyGroupBox" Header="Color Key" HorizontalAlignment="Left" Margin="262,175,0,0" VerticalAlignment="Top" Height="134" Width="245">
+            <Grid>
+                <Label x:Name="takenColorLabel" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Red"/>
+                <Label x:Name="emptyColorLabel" Content="" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="selectedColorLabel" Content="" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Green"/>
+                <Label x:Name="takenLabel" Content="Seat is taken" HorizontalAlignment="Left" Margin="43,10,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="emptyLabel" Content="Seat is empty" HorizontalAlignment="Left" Margin="43,41,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="selectedLabel" Content="Selected Passenger's Seat" HorizontalAlignment="Left" Margin="43,72,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="flightSeatingGroupBox2" Visibility="Hidden" Header="Flight 102" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="299" Width="247">
+            <Grid>
+                <Label x:Name="airplaneTypeLabel2" Content="Airbus A380" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="86.5,0,0,0" VerticalAlignment="Top" Width="74"/>
+                <Label x:Name="flight2Seat1Label" Content="1" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat2Label" Content="2" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="41,31,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat3Label" Content="3" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="168,31,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat4Label" Content="4" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="199,31,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat5Label" Content="5" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat6Label" Content="6" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="41,62,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat7Label" Content="7" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="168,62,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat8Label" Content="8" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="199,62,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat9Label" Content="9" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat10Label" Content="10" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="41,92,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat11Label" Content="11" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="168,93,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat12Label" Content="12" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="199,93,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat13Label" Content="13" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat14Label" Content="14" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="41,123,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat15Label" Content="15" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="168,124,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat16Label" Content="16" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="199,124,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat17Label" Content="17" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,154,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat18Label" Content="18" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="41,154,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat19Label" Content="19" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="168,154,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight2Seat20Label" Content="20" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="199,154,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="flightSeatingGroupBox1" Visibility="Hidden" Header="Flight 412" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="299" Width="247">
+            <Grid>
+                <Label x:Name="airplaneFlightLabel1" Content="Boeing 767" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="86.5,0,0,0" VerticalAlignment="Top" Width="74"/>
+                <Label x:Name="flight1Seat1Label" Content="1" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat2Label" Content="2" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="41,31,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat3Label" Content="3" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="72,31,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat4Label" Content="4" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="168,31,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat5Label" Content="5" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="199,31,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat6Label" Content="6" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat7Label" Content="7" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="41,62,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat8Label" Content="8" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="72,62,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat9Label" Content="9" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="168,62,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat10Label" Content="10" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="199,62,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat11Label" Content="11" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat12Label" Content="12" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="41,93,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat13Label" Content="13" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="72,93,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat14Label" Content="14" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="168,93,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat15Label" Content="15" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="199,93,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat16Label" Content="16" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat17Label" Content="17" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="41,124,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat18Label" Content="18" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="72,124,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat19Label" Content="19" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="168,124,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+                <Label x:Name="flight1Seat20Label" Content="20" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="199,124,0,0" VerticalAlignment="Top" Width="26" Height="26" Background="Blue"/>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Window>

@@ -1,0 +1,15 @@
+﻿Build started 3/31/2014 8:44:12 PM.
+     1>Project "F:\CS\CS 2650\CS2650AT2\Project.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\CS2650P2.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       _MASM:
+         Assembling [Inputs]...
+         cmd.exe /C "C:\Users\Aaron\AppData\Local\Temp\tmpe309852d80c2488a93b00d8ad8298cbe.cmd"
+         ml.exe /c /nologo /Zi /Fo"Debug\CS2650P2.obj" /I "c:\Irvine" /W3 /errorReport:prompt  /TaCS2650P2.asm
+     1>CS2650P2.asm(6): fatal error A1000: cannot open file : Irvine32.inc
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\BuildCustomizations\masm.targets(49,5): error MSB3721: The command "ml.exe /c /nologo /Zi /Fo"Debug\CS2650P2.obj" /I "c:\Irvine" /W3 /errorReport:prompt  /TaCS2650P2.asm" exited with code 1.
+     1>Done Building Project "F:\CS\CS 2650\CS2650AT2\Project.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:04.47

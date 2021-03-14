@@ -1,0 +1,44 @@
+/*
+   Sunny Acres Holiday Festival Style Sheet
+   Author: Aaron Shaneen
+   Date: 9/9/2015
+
+   Filename: sunny.css
+   Supporting Files: greenbar.jpg
+
+*/
+
+body
+{
+ 		font-family: Arial, Helvetica, Sans-Sarif;
+		background: white url(greenbar.jpg) repeat-y scroll top left;
+}
+
+h1
+{
+ 		border-bottom: 3px dashed red;
+		padding-bottom: 10px;
+}
+
+h2, h3
+{
+ 		color: white;
+		background-color: green;
+		padding-left: 5px;
+		letter-spacing: 7px;
+}
+
+h3
+{
+ 		width: 200px;
+}
+
+#outer
+{
+ 		width: 770px;
+}
+
+#links
+{
+ 		
+}

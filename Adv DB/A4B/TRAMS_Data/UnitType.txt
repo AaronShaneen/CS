@@ -1,0 +1,7 @@
+1|Studio
+2|1 Bedroom
+3|2 Bedroom
+4|3 Bedroom
+5|Standard
+6|Premium
+7|Other

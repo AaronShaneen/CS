@@ -1,0 +1,14 @@
+﻿Build started 7/14/2014 11:02:37 AM.
+     1>Project "D:\Box Sync\Box Sync\Courses\CS 2650\Assignments\VS 2010\CS2810-A1\CS2810-A1\CS2810-A1.vcxproj" on node 2 (Build target(s)).
+     1>_MASM:
+         Assembling CS2810-A1.asm...
+         cmd.exe /C "C:\Users\Joshua N. Jensen\AppData\Local\Temp\tmp94dcaca77968450fb4261eda5b9bc447.cmd"
+         ml.exe /c /nologo /Zi /Fo"Debug\CS2810-A1.obj" /Fl"CS2810-A1.lst" /I "c:\Irvine" /W3 /errorReport:prompt  /Ta"CS2810-A1.asm"
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Box Sync\Box Sync\Courses\CS 2650\Assignments\VS 2010\CS2810-A1\Debug\CS2810-A1.exe" /INCREMENTAL /NOLOGO /LIBPATH:c:\Irvine kernel32.lib user32.lib irvine32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Box Sync\Box Sync\Courses\CS 2650\Assignments\VS 2010\CS2810-A1\Debug\CS2810-A1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Box Sync\Box Sync\Courses\CS 2650\Assignments\VS 2010\CS2810-A1\Debug\CS2810-A1.lib" /MACHINE:X86 /SAFESEH:NO "Debug\CS2810-A1.obj"
+         CS2810-A1.vcxproj -> D:\Box Sync\Box Sync\Courses\CS 2650\Assignments\VS 2010\CS2810-A1\Debug\CS2810-A1.exe
+     1>Done Building Project "D:\Box Sync\Box Sync\Courses\CS 2650\Assignments\VS 2010\CS2810-A1\CS2810-A1\CS2810-A1.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.74

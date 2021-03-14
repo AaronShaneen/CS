@@ -1,0 +1,12 @@
+﻿Build started 1/16/2015 6:11:54 PM.
+     1>Project "C:\Users\Aaron\Desktop\The Den\School\CS 1410\HW9P1\HW9P1\HW9P1.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt HW9P1.cpp
+         HW9P1.cpp
+     1>c:\users\aaron\desktop\the den\school\cs 1410\hw9p1\hw9p1\hw9p1.cpp(62): error C2143: syntax error : missing ',' before ';'
+     1>c:\users\aaron\desktop\the den\school\cs 1410\hw9p1\hw9p1\hw9p1.cpp(91): error C2143: syntax error : missing ',' before ';'
+     1>Done Building Project "C:\Users\Aaron\Desktop\The Den\School\CS 1410\HW9P1\HW9P1\HW9P1.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.67

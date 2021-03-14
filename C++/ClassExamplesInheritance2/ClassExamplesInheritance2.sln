@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClassExamplesInheritance2", "ClassExamplesInheritance2\ClassExamplesInheritance2.vcxproj", "{A962BB1E-EA33-44E4-AF94-9934639695AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A962BB1E-EA33-44E4-AF94-9934639695AE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A962BB1E-EA33-44E4-AF94-9934639695AE}.Debug|Win32.Build.0 = Debug|Win32
+		{A962BB1E-EA33-44E4-AF94-9934639695AE}.Release|Win32.ActiveCfg = Release|Win32
+		{A962BB1E-EA33-44E4-AF94-9934639695AE}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

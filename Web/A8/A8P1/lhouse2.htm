@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- 
+	New Perspectives on HTML, XHTML and DHTML
+   	Tutorial 12
+   	Case Problem 1
+
+   	The Lighthouse
+   	Author: Aaron Shaneen
+   	Date:   Nov 1, 2051
+
+   	Filename:         clist.htm
+   	Supporting files: lhouse.css, list.js, logo.jpg
+
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>The Lighthouse</title>
+	
+   	<link href="lhouse2.css" rel="stylesheet" type="text/css"/>
+	
+	<script src="list.js" language="JavaScript" type="text/javascript"></script>
+	
+	<script language="JavaScript" type="text/javascript">
+		function amountTotal()
+		{
+			var total = 0;
+			
+			for(var i = 0; i < amount.length; i++)
+			{
+				total += amount[i];
+			}
+			
+			return total;
+		}
+	</script>
+</head>
+
+<body>
+	<div id="title">
+    	<img src="logo.jpg" alt="The Lighthouse"/>
+      		The Lighthouse<br/>
+      		543 Oak Street<br/>
+      		Owensboro, KY &nbsp;&nbsp;42302<br/>
+      	(270) 555-7511
+   	</div>
+
+   	<div id="data_list">
+		<script language="JavaScript" type="text/javascript">
+			document.write("<table border='1' rules='rows' cellspacing='0'>");
+			document.write("<tr>" + "<th>Date</th>" + "<th>Amount</th>" +
+				"<th>First Name</th>" + "<th>Last Name</th>" +
+				"<th>Address</th>" + "</tr>");
+			
+			for(var i = 0; i < amount.length; i++)
+			{
+				if((i%2) == 0)
+				{
+					document.write("<tr>");
+				}
+				
+				else
+				{
+					document.write("<tr class='yellowrow'>");
+				}
+				
+				document.write("<td>" + date[i] + "</td>" +
+					"<td class='amt'>" + amount[i] + "</td>" +
+					"<td>" + firstName[i] + "</td>" +
+					"<td>" + lastName[i] + "</td>" +
+					"<td>" + street[i] + "<br/>" +
+					city[i] + ", " + state[i] + zip[i] +
+					"</td>" + "</tr>");
+			}
+			
+			document.write("</table>");
+		</script>
+  	</div>
+
+   	<div id="totals">
+		<script language="JavaScript" type="text/javascript">
+			document.write("<table border='1' cellspacing='1'>");
+			document.write("<tr>" + "<th id='sumTitle' colspan='2'>Summary</th>" + "</tr>");
+			document.write("<tr>" + "<th>Contributors</th>" + "<td>" + amount.length + "</td>" + "</tr>");
+			document.write("<tr>" + "<th>Amount</th>" + "<td>" + "$" + amountTotal() + "</td>" + "</tr>");
+			document.write("</table>");
+		</script>
+   	</div>
+
+	
+	
+</body>
+</html>

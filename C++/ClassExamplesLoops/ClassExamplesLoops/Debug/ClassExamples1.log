@@ -1,0 +1,11 @@
+﻿Build started 1/30/2014 11:34:06 AM.
+     1>Project "E:\CS\CS 1410\ClassExamples1\ClassExamples1\ClassExamples1.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ClassExamplesLoops.cpp
+         ClassExamplesLoops.cpp
+     1>e:\cs\cs 1410\classexamples1\classexamples1\classexamplesloops.cpp(36): error C2065: 'h' : undeclared identifier
+     1>Done Building Project "E:\CS\CS 1410\ClassExamples1\ClassExamples1\ClassExamples1.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:04.95

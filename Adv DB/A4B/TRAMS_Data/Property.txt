@@ -1,0 +1,9 @@
+10000|Wasatch Mountain Resort|1847 Pioneer Drive|Park City|UT|84060|USA|435-543-9854|25.00|http://onewasatch.com|1
+11000|Grand Oasis Resort & Marina|303 Fantasy Harbour Blvd|Myrtle Beach|SC|29579|USA|843-903-4000|22.22|http://grandoasismyrtlebeach.com|2
+12000|Big Sky Mountain Lodge|75 Sitting Bull Rd|Big Sky|MT|59716|USA|406-995-7858|25.00|http://www.lodgeatbigsky.com|3
+13000|Royal Canadian Maple Leaf Lodge|4154 Village Green|Whistler|BC|V0N 1B4|Canada|604-932-2221|30.00||4
+14000|Disney Timeshares Inc|5430 Central Florida Parkway|Orlando|FL|32821|USA|407-239-8899|19.85|http://disneyvacationclub.disney.go.com/|5
+15000|Grand Maya Playa|Carretera Federal Cancun - Playa del Carmen Km. 48|Cancun||77710|Mexico|+52 984 206 4003|30.00|http://www.thegrandmayan.com/riviera-maya|6
+16000|Zen Garden Resort, Marina, Spa & Conference Center|231 Moo 3 Mai Khao|Talang Phuket||83110|Thailand|+66 76 338 000|30.00|http://zengardenthailand.com|
+17000|Bare Essentials Nudist Resort|69 Sunscreen Way|Fairbanks|AK|99701|USA|907-456-7722|38.00||7
+18000|Yuppie Valley Resort|2 Much Money Drive|Park City|UT|84060|USA|435-864-6831|17.76|http://www.thisyuppielife.com/|1

@@ -1,0 +1,13 @@
+/*
+   Online Scrapbooks Style Sheet for Printed Output
+   Author: 
+   Date:   
+
+   Filename:         print.css
+   Supporting Files: none
+
+*/
+
+#head, #links, #address	 {display: none}
+
+h1, h2, h3, h4, h5, h6	 {font-family: sans-serif}

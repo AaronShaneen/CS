@@ -1,0 +1,17 @@
+<div id="note1" class="notes">
+<p>Paste cut-out letters and words in your scrapbook to create
+a 3D effect. Online Scrapbooks sells professionally designed
+cut-out letters, words, and phrases for all occasions.</p>
+</div>
+<div id="note2" class="notes">
+<p>Clippings, flyers, programs, and other memorabilia are valuable
+sources of information that can enhance your scrapbook pages.
+Make sure that any material is copied to acid-free paper.
+Newspaper clippings are especially susceptible to deterioration.
+</p>
+</div>
+<div id="note3" class="notes">
+<p>Photographic cut-outs and textured backgrounds can add
+visual interest to your pages. See the online store for our
+wide variety of textured and embossed papers.</p>
+</div>

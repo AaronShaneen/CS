@@ -1,0 +1,6 @@
+db.territoryState.aggregate([{$group:{_id:{territoryID:"$territoryID",territoryName:"$territoryName"},count:{$sum:1}}}]);
+
+db.territoryState.mapReduce(
+	function(){emit({"territoryID":this.territoryID,"territoryName":this.territoryName},1);},
+	function(key,values){return Array.sum(values);},
+		{query:{},out:{inline:1}}).find();

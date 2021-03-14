@@ -1,0 +1,968 @@
+-- PurpleBoxDVD Create Script
+-- CS3550 Spring 2017
+-- Aaron Shaneen
+
+USE master;
+
+-- drop PurpleBoxDVD database if it exists
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.sysdatabases
+	WHERE name = 'PurpleBoxDVD'
+)
+
+DROP DATABASE PurpleBoxDVD;
+
+-- create PurpleBoxDVD database
+
+CREATE DATABASE PurpleBoxDVD
+
+ON PRIMARY
+(
+	NAME = N'PurpleBoxDVD',
+	FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\PurpleBoxDVD.mdf',
+	SIZE = 5120KB,
+	FILEGROWTH = 1024KB
+)
+
+-- create PurpleBoxDVD database log
+
+LOG ON
+(
+	NAME = N'PurpleBoxDVDLog',
+	FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\PurpleBoxDVDLog.ldf',
+	SIZE = 2048KB,
+	FILEGROWTH = 10%
+)
+
+-- batch delete/create database
+
+GO
+
+-- attach to new database
+
+USE PurpleBoxDVD;
+
+-- drop all tables if they exist
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbPHONENO'
+)
+
+DROP TABLE pbPHONENO;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbBANNEDDESC'
+)
+
+DROP TABLE pbBANNEDDESC;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbUSERSECQA'
+)
+
+DROP TABLE pbUSERSECQA;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbSECQUESTION'
+)
+
+DROP TABLE pbSECQUESTION;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbRENTAL'
+)
+
+DROP TABLE pbRENTAL;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbREQUEST'
+)
+
+DROP TABLE pbREQUEST;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbUSER'
+)
+
+DROP TABLE pbUSER;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbMOVIEITEM'
+)
+
+DROP TABLE pbMOVIEITEM;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbFORMAT'
+)
+
+DROP TABLE pbFORMAT;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbMOVIEGENRE'
+)
+
+DROP TABLE pbMOVIEGENRE;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbGENRE'
+)
+
+DROP TABLE pbGENRE;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbMOVIEKEYWORD'
+)
+
+DROP TABLE pbMOVIEKEYWORD;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbKEYWORD'
+)
+
+DROP TABLE pbKEYWORD;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbMOVIEDIRECTOR'
+)
+
+DROP TABLE pbMOVIEDIRECTOR;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbDIRECTOR'
+)
+
+DROP TABLE pbDIRECTOR;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbMOVIEACTOR'
+)
+
+DROP TABLE pbMOVIEACTOR;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbACTOR'
+)
+
+DROP TABLE pbACTOR;
+
+IF EXISTS
+(
+	SELECT *
+	FROM sys.tables
+	WHERE NAME = N'pbMOVIE'
+)
+
+DROP TABLE pbMOVIE;
+
+-- batch delete tables
+
+GO
+
+-- create all tables
+
+CREATE TABLE pbUSER
+(
+	pbUser_ID SMALLINT NOT NULL IDENTITY(1,1),
+	pbUserID VARCHAR(20) NOT NULL,
+	userPwd VARCHAR(20) NOT NULL,
+	userFirstName VARCHAR(20) NOT NULL,
+	userLastName VARCHAR(20) NOT NULL,
+	userAddress VARCHAR(50) NOT NULL,
+	userCity VARCHAR(20) NOT NULL,
+	userState CHAR(2) NOT NULL,
+	userZip CHAR(9) NOT NULL,
+	userType CHAR(1) NOT NULL,
+	userFees SMALLINT NOT NULL,
+	userBannedStatus CHAR(1) NOT NULL
+)
+
+CREATE TABLE pbPHONENO
+(
+	pbPhoneNo_ID SMALLINT NOT NULL IDENTITY(1,1),
+	pbUser_ID SMALLINT NOT NULL,
+	phoneNo	VARCHAR(20) NULL
+)
+
+CREATE TABLE pbBANNEDDESC
+(
+	pbBannedDesc_ID	SMALLINT NOT NULL IDENTITY(1,1),
+	pbUser_ID SMALLINT NOT NULL,
+	bannedDesc VARCHAR(20) NOT NULL
+)
+
+CREATE TABLE pbSECQUESTION
+(
+	pbSecQ_ID SMALLINT NOT NULL IDENTITY(1,1),
+	secQuestion VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE pbUSERSECQA
+(
+	pbUserSecQA_ID SMALLINT NOT NULL IDENTITY(1,1),
+	pbSecQ_ID SMALLINT NOT NULL,
+	pbUser_ID SMALLINT NOT NULL,
+	userSecA VARCHAR(20) NOT NULL
+)
+
+CREATE TABLE pbMOVIE
+(
+	pbMovie_ID SMALLINT NOT NULL IDENTITY(1,1),
+	movieTitle VARCHAR(20) NOT NULL,
+	movieDate DATE NOT NULL
+)
+
+CREATE TABLE pbFORMAT
+(
+	pbFormat_ID SMALLINT NOT NULL IDENTITY(1,1),
+	formatName VARCHAR(20) NOT NULL
+)
+
+CREATE TABLE pbMOVIEITEM
+(
+	pbMovieItem_ID SMALLINT NOT NULL IDENTITY(1,1),
+	pbMovieItemID SMALLINT NOT NULL,
+	pbMovie_ID SMALLINT NOT NULL,
+	pbFormat_ID SMALLINT NOT NULL,
+	movieItemCopyNo SMALLINT NOT NULL
+)
+
+CREATE TABLE pbRENTALHISTORY
+(
+	pbRentalHistory_ID SMALLINT NOT NULL IDENTITY(1,1),
+	pbUser_ID SMALLINT NOT NULL,
+	pbMovieItem_ID SMALLINT NOT NULL,
+	rentalDate DATETIME NOT NULL,
+	lastChangedBy VARCHAR(20) NOT NULL,
+	lastChangedOn DATETIME NOT NULL,
+)
+
+CREATE TABLE pbRENTAL
+(
+	pbRental_ID SMALLINT NOT NULL IDENTITY(1,1),
+	pbUser_ID SMALLINT NOT NULL,
+	pbMovieItem_ID SMALLINT NOT NULL,
+	rentalDate DATETIME NOT NULL,
+	returnDate DATETIME NULL
+)
+
+CREATE TABLE pbREQUEST
+(
+	pbRequest_ID SMALLINT NOT NULL IDENTITY(1,1),
+	pbUser_ID SMALLINT NOT NULL,
+	pbMovieItem_ID SMALLINT NOT NULL,
+	reqDate DATETIME NOT NULL
+)
+
+CREATE TABLE pbGENRE
+(
+	pbGenre_ID SMALLINT NOT NULL IDENTITY(1,1),
+	genre VARCHAR(20) NOT NULL
+)
+
+CREATE TABLE pbMOVIEGENRE
+(
+	pbMovieGenre_ID SMALLINT NOT NULL IDENTITY(1,1),
+	pbMovie_ID SMALLINT NOT NULL,
+	pbGenre_ID SMALLINT NOT NULL
+)
+
+CREATE TABLE pbKEYWORD
+(
+	pbKeyword_ID SMALLINT NOT NULL IDENTITY(1,1),
+	keyword VARCHAR(20) NULL
+)
+
+CREATE TABLE pbMOVIEKEYWORD
+(
+	pbMovieKeyword_ID SMALLINT NOT NULL IDENTITY(1,1),
+	pbMovie_ID SMALLINT NOT NULL,
+	pbKeyword_ID SMALLINT NOT NULL
+)
+
+CREATE TABLE pbDIRECTOR
+(
+	pbDirector_ID SMALLINT NOT NULL IDENTITY(1,1),
+	directorFirstName VARCHAR(20) NOT NULL,
+	directorLastName VARCHAR(20) NOT NULL
+)
+
+CREATE TABLE pbMOVIEDIRECTOR
+(
+	pbMovieDirector_ID SMALLINT NOT NULL IDENTITY(1,1),
+	pbDirector_ID SMALLINT NOT NULL,
+	pbMovie_ID SMALLINT NOT NULL
+)
+
+CREATE TABLE pbACTOR
+(
+	pbActor_ID SMALLINT NOT NULL IDENTITY(1,1),
+	actorFirstName VARCHAR(20) NOT NULL,
+	actorLastName VARCHAR(20) NOT NULL
+)
+
+CREATE TABLE pbMOVIEACTOR
+(
+	pbMovieActor_ID SMALLINT NOT NULL IDENTITY(1,1),
+	pbActor_ID SMALLINT NOT NULL,
+	pbMovie_ID SMALLINT NOT NULL
+)
+
+-- batch create tables
+
+GO
+
+-- create primary keys
+
+ALTER TABLE pbUSER
+	ADD CONSTRAINT PK_USER
+	PRIMARY KEY (pbUser_ID)
+
+ALTER TABLE pbPHONENO
+	ADD CONSTRAINT PK_PHONENO
+	PRIMARY KEY (pbPhoneNo_ID)
+
+ALTER TABLE pbBANNEDDESC
+	ADD CONSTRAINT PK_BANNEDDESC
+	PRIMARY KEY (pbBannedDesc_ID)
+
+ALTER TABLE pbSECQUESTION
+	ADD CONSTRAINT PK_SECQUESTION
+	PRIMARY KEY (pbSecQ_ID)
+
+ALTER TABLE pbUSERSECQA
+	ADD CONSTRAINT PK_USERSECQA
+	PRIMARY KEY (pbUserSecQA_ID)
+
+ALTER TABLE pbMOVIE
+	ADD CONSTRAINT PK_MOVIE
+	PRIMARY KEY (pbMovie_ID)
+
+ALTER TABLE pbFORMAT
+	ADD CONSTRAINT PK_FORMAT
+	PRIMARY KEY (pbFormat_ID)
+
+ALTER TABLE pbMOVIEITEM
+	ADD CONSTRAINT PK_MOVIEITEM
+	PRIMARY KEY (pbMovieItem_ID)
+
+ALTER TABLE pbRENTALHISTORY
+	ADD CONSTRAINT PK_RENTALHISTORY
+	PRIMARY KEY (pbRentalHistory_ID)
+
+ALTER TABLE pbRENTAL
+	ADD CONSTRAINT PK_RENTAL
+	PRIMARY KEY (pbRental_ID)
+
+ALTER TABLE pbREQUEST
+	ADD CONSTRAINT PK_REQUEST
+	PRIMARY KEY (pbRequest_ID)
+
+ALTER TABLE pbGENRE
+	ADD CONSTRAINT PK_GENRE
+	PRIMARY KEY (pbGenre_ID)
+
+ALTER TABLE pbMOVIEGENRE
+	ADD CONSTRAINT PK_MOVIEGENRE
+	PRIMARY KEY (pbMovieGenre_ID)
+
+ALTER TABLE pbKEYWORD
+	ADD CONSTRAINT PK_KEYWORD
+	PRIMARY KEY (pbKeyword_ID)
+
+ALTER TABLE pbMOVIEKEYWORD
+	ADD CONSTRAINT PK_MOVIEKEYWORD
+	PRIMARY KEY (pbMovieKeyword_ID)
+
+ALTER TABLE pbDIRECTOR
+	ADD CONSTRAINT PK_DIRECTOR
+	PRIMARY KEY (pbDirector_ID)
+
+ALTER TABLE pbMOVIEDIRECTOR
+	ADD CONSTRAINT PK_MOVIEDIRECTOR
+	PRIMARY KEY (pbMovieDirector_ID)
+
+ALTER TABLE pbACTOR
+	ADD CONSTRAINT PK_ACTOR
+	PRIMARY KEY (pbActor_ID)
+
+ALTER TABLE pbMOVIEACTOR
+	ADD CONSTRAINT PK_MOVIEACTOR
+	PRIMARY KEY (pbMovieActor_ID)
+
+-- batch create primary keys
+
+GO
+
+-- create alternate keys
+
+ALTER TABLE pbUSER
+	ADD CONSTRAINT AK_USER
+	UNIQUE (pbUserID)
+
+ALTER TABLE pbMOVIEITEM
+	ADD CONSTRAINT AK_MOVIEITEM
+	UNIQUE (pbMovieItemID)
+
+-- batch create alternate keys
+GO
+
+-- create foreign keys
+
+ALTER TABLE pbPHONENO
+	ADD CONSTRAINT FK_PHONENO_USER
+	FOREIGN KEY (pbUser_ID) REFERENCES pbUSER(pbUser_ID)
+
+ALTER TABLE pbBANNEDDESC
+	ADD CONSTRAINT FK_BANNEDDESC_USER
+	FOREIGN KEY (pbUser_ID) REFERENCES pbUSER(pbUser_ID)
+
+ALTER TABLE pbUSERSECQA
+	ADD CONSTRAINT FK_USERSECQA_USER
+	FOREIGN KEY (pbUser_ID) REFERENCES pbUSER(pbUser_ID)
+
+ALTER TABLE pbUSERSECQA
+	ADD CONSTRAINT FK_USERSECQA_SECQUESTION
+	FOREIGN KEY (pbSecQ_ID) REFERENCES pbSECQUESTION(pbSecQ_ID)
+
+ALTER TABLE pbRENTALHISTORY
+	ADD CONSTRAINT FK_RENTALHISTORY_USER
+	FOREIGN KEY (pbUser_ID) REFERENCES pbUSER(pbUser_ID)
+
+ALTER TABLE pbRENTALHISTORY
+	ADD CONSTRAINT FK_RENTALHISTORY_MOVIEITEM
+	FOREIGN KEY (pbMovieItem_ID) REFERENCES pbMOVIEITEM(pbMovieItem_ID)
+
+ALTER TABLE pbRENTAL
+	ADD CONSTRAINT FK_RENTAL_USER
+	FOREIGN KEY (pbUser_ID) REFERENCES pbUSER(pbUser_ID)
+
+ALTER TABLE pbRENTAL
+	ADD CONSTRAINT FK_RENTAL_MOVIEITEM
+	FOREIGN KEY (pbMovieItem_ID) REFERENCES pbMOVIEITEM(pbMovieItem_ID)
+
+ALTER TABLE pbREQUEST
+	ADD CONSTRAINT FK_REQUEST_USER
+	FOREIGN KEY (pbUser_ID) REFERENCES pbUSER(pbUser_ID)
+
+ALTER TABLE pbREQUEST
+	ADD CONSTRAINT FK_REQUEST_MOVIEITEM
+	FOREIGN KEY (pbMovieItem_ID) REFERENCES pbMOVIEITEM(pbMovieItem_ID)
+
+ALTER TABLE pbMOVIEITEM
+	ADD CONSTRAINT FK_MOVIEITEM_MOVIE
+	FOREIGN KEY (pbMovie_ID) REFERENCES pbMOVIE(pbMovie_ID)
+
+ALTER TABLE pbMOVIEITEM
+	ADD CONSTRAINT FK_MOVIEITEM_FORMAT
+	FOREIGN KEY (pbFormat_ID) REFERENCES pbFORMAT(pbFormat_ID)
+
+ALTER TABLE pbMOVIEGENRE
+	ADD CONSTRAINT FK_MOVIEGENRE_MOVIE
+	FOREIGN KEY (pbMovie_ID) REFERENCES pbMOVIE(pbMovie_ID)
+
+ALTER TABLE pbMOVIEGENRE
+	ADD CONSTRAINT FK_MOVIEGENRE_GENRE
+	FOREIGN KEY (pbGenre_ID) REFERENCES pbGENRE(pbGenre_ID)
+
+ALTER TABLE pbMOVIEKEYWORD
+	ADD CONSTRAINT FK_MOVIEKEYWORD_MOVIE
+	FOREIGN KEY (pbMovie_ID) REFERENCES pbMOVIE(pbMovie_ID)
+
+ALTER TABLE pbMOVIEKEYWORD
+	ADD CONSTRAINT FK_MOVIEKEYWORD_KEYWORD
+	FOREIGN KEY (pbKeyword_ID) REFERENCES pbKEYWORD(pbKeyword_ID)
+
+ALTER TABLE pbMOVIEDIRECTOR
+	ADD CONSTRAINT FK_MOVIEDIRECTOR_DIRECTOR
+	FOREIGN KEY (pbDirector_ID) REFERENCES pbDIRECTOR(pbDirector_ID)
+
+ALTER TABLE pbMOVIEDIRECTOR
+	ADD CONSTRAINT FK_MOVIEDIRECTOR_MOVIE
+	FOREIGN KEY (pbMovie_ID) REFERENCES pbMOVIE(pbMovie_ID)
+
+ALTER TABLE pbMOVIEACTOR
+	ADD CONSTRAINT FK_MOVIEACTOR_ACTOR
+	FOREIGN KEY (pbActor_ID) REFERENCES pbACTOR(pbActor_ID)
+
+ALTER TABLE pbMOVIEACTOR
+	ADD CONSTRAINT FK_MOVIEACTOR_MOVIE
+	FOREIGN KEY (pbMovie_ID) REFERENCES pbMOVIE(pbMovie_ID)
+
+-- batch create foreign keys
+
+GO
+
+-- create check constraints
+
+ALTER TABLE pbUSER
+	ADD CONSTRAINT CK_pbUSER_userType
+	CHECK (userType = 'A' OR userType = 'P' OR userType = 'R')
+
+ALTER TABLE pbPHONENO
+	ADD CONSTRAINT CK_PHONENO_phoneNo
+	CHECK (phoneNo LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
+
+ALTER TABLE pbUSER
+	ADD CONSTRAINT CK_pbUSER_userBannedStatus
+	CHECK (userBannedStatus = 'Y' OR userBannedStatus = 'N')
+
+ALTER TABLE pbFORMAT
+	ADD CONSTRAINT CK_pbFORMAT_formatName
+	CHECK (formatName = 'DVD' OR formatName = 'BLU')
+
+-- batch create constraints
+
+GO
+
+-- insert statements
+
+-- insert security questions for users
+
+INSERT
+INTO pbSECQUESTION (secQuestion)
+VALUES ('What is your favorite color?')
+
+INSERT
+INTO pbSECQUESTION (secQuestion)
+VALUES ('What is your favorite shape?')
+
+-- insert first user
+
+INSERT
+INTO pbUSER (pbUserID, userPwd, userFirstName, userLastName, userAddress, userCity, userState, userZip, userType, userFees, userBannedStatus)
+VALUES ('jm1234', 'apcg3947', 'Jack', 'McClellan', '2292 West Ave', 'Austin', 'TX', '39721', 'A', 0, 'N')
+
+INSERT
+INTO pbPHONENO (pbUser_ID, phoneNo)
+VALUES ((SELECT pbUser_ID FROM pbUSER WHERE userFirstName = 'Jack' AND userLastName = 'McClellan'), '4507182344')
+
+INSERT
+INTO pbPHONENO (pbUser_ID, phoneNo)
+VALUES ((SELECT pbUser_ID FROM pbUSER WHERE userFirstName = 'Jack' AND userLastName = 'McClellan'), '4509786657')
+
+INSERT
+INTO pbUSERSECQA (pbSecQ_ID, pbUser_ID, userSecA)
+VALUES (1, (SELECT pbUser_ID FROM pbUSER WHERE userFirstName = 'Jack' AND userLastName = 'McClellan'), 'Black')
+
+INSERT
+INTO pbUSERSECQA (pbSecQ_ID, pbUser_ID, userSecA)
+VALUES (2, (SELECT pbUser_ID FROM pbUSER WHERE userFirstName = 'Jack' AND userLastName = 'McClellan'), 'Circle')
+
+-- insert second user
+
+INSERT
+INTO pbUSER (pbUserID, userPwd, userFirstName, userLastName, userAddress, userCity, userState, userZip, userType, userFees, userBannedStatus)
+VALUES ('mj1234', 'decd1469', 'Mike', 'Johnson', '1392 Beech Ave', 'Lincoln', 'CA', '65477', 'P', 0, 'N')
+
+INSERT
+INTO pbPHONENO (pbUser_ID, phoneNo)
+VALUES ((SELECT pbUser_ID FROM pbUSER WHERE userFirstName = 'Mike' AND userLastName = 'Johnson'), '3457298734')
+
+INSERT
+INTO pbPHONENO (pbUser_ID, phoneNo)
+VALUES ((SELECT pbUser_ID FROM pbUSER WHERE userFirstName = 'Mike' AND userLastName = 'Johnson'), '3452938473')
+
+INSERT
+INTO pbUSERSECQA (pbSecQ_ID, pbUser_ID, userSecA)
+VALUES (1, (SELECT pbUser_ID FROM pbUSER WHERE userFirstName = 'Mike' AND userLastName = 'Johnson'), 'Red')
+
+INSERT
+INTO pbUSERSECQA (pbSecQ_ID, pbUser_ID, userSecA)
+VALUES (2, (SELECT pbUser_ID FROM pbUSER WHERE userFirstName = 'Mike' AND userLastName = 'Johnson'), 'Square')
+
+-- insert movie genres for movies
+
+INSERT
+INTO pbGENRE (genre)
+VALUES ('Drama')
+
+INSERT
+INTO pbGENRE (genre)
+VALUES ('SciFi')
+
+INSERT
+INTO pbGENRE (genre)
+VALUES ('Action')
+
+-- insert actors for movies
+
+INSERT
+INTO pbACTOR (actorFirstName, actorLastName)
+VALUES ('Leonardo', 'Dicaprio')
+
+INSERT
+INTO pbACTOR (actorFirstName, actorLastName)
+VALUES ('Emily', 'Blunt')
+
+INSERT
+INTO pbACTOR (actorFirstName, actorLastName)
+VALUES ('Tom', 'Hardy')
+
+INSERT
+INTO pbACTOR (actorFirstName, actorLastName)
+VALUES ('Jennifer', 'Connelly')
+
+INSERT
+INTO pbACTOR (actorFirstName, actorLastName)
+VALUES ('Joseph', 'Gordon Levitt')
+
+INSERT
+INTO pbACTOR (actorFirstName, actorLastName)
+VALUES ('Marion', 'Cotillard')
+
+-- insert directors for movies
+
+INSERT
+INTO pbDIRECTOR (directorFirstName, directorLastName)
+VALUES ('Christopher', 'Nolan')
+
+INSERT
+INTO pbDIRECTOR (directorFirstName, directorLastName)
+VALUES ('Rian', 'Johnson')
+
+INSERT
+INTO pbDIRECTOR (directorFirstName, directorLastName)
+VALUES ('George', 'Miller')
+
+-- insert first movie
+
+INSERT
+INTO pbMOVIE (movieTitle, movieDate)
+VALUES ('Inception', GETDATE())
+
+INSERT
+INTO pbMOVIEDIRECTOR (pbDirector_ID, pbMovie_ID)
+VALUES ((SELECT pbDirector_ID FROM pbDIRECTOR WHERE directorFirstName = 'Christopher' AND directorLastName = 'Nolan'),
+	(SELECT pbMovie_ID FROM pbMOVIE WHERE movieTitle = 'Inception'))
+
+INSERT
+INTO pbMOVIEACTOR (pbActor_ID, pbMovie_ID)
+VALUES ((SELECT pbActor_ID FROM pbACTOR WHERE actorFirstName = 'Leonardo' AND actorLastName = 'Dicaprio'),
+	(SELECT pbMovie_ID FROM pbMOVIE WHERE movieTitle = 'Inception'))
+
+-- insert 2nd actor
+
+INSERT
+INTO pbMOVIEGENRE (pbMovie_ID, pbGenre_ID)
+VALUES ((SELECT pbMovie_ID FROM pbMOVIE WHERE movieTitle = 'Inception'), (SELECT pbGenre_ID FROM pbGENRE WHERE genre = 'Drama'))
+
+-- insert 2 movie items
+
+-- insert second movie
+
+INSERT
+INTO pbMOVIE (movieTitle, movieDate)
+VALUES ('Looper', GETDATE())
+
+INSERT
+INTO pbMOVIEDIRECTOR (pbDirector_ID, pbMovie_ID)
+VALUES ((SELECT pbDirector_ID FROM pbDIRECTOR WHERE directorFirstName = 'Rian' AND directorLastName = 'Johnson'),
+	(SELECT pbMovie_ID FROM pbMOVIE WHERE movieTitle = 'Looper'))
+
+INSERT
+INTO pbMOVIEACTOR (pbActor_ID, pbMovie_ID)
+VALUES ((SELECT pbActor_ID FROM pbACTOR WHERE actorFirstName = 'Joseph' AND actorLastName = 'Gordon Levitt'),
+	(SELECT pbMovie_ID FROM pbMOVIE WHERE movieTitle = 'Looper'))
+
+-- insert 2nd actor
+
+INSERT
+INTO pbMOVIEGENRE (pbMovie_ID, pbGenre_ID)
+VALUES ((SELECT pbMovie_ID FROM pbMOVIE WHERE movieTitle = 'Looper'), (SELECT pbGenre_ID FROM pbGENRE WHERE genre = 'Action'))
+
+-- insert 2 movie items
+
+-- insert third movie
+
+INSERT
+INTO pbMOVIE (movieTitle, movieDate)
+VALUES ('Mad Max', GETDATE())
+
+INSERT
+INTO pbMOVIEDIRECTOR (pbDirector_ID, pbMovie_ID)
+VALUES ((SELECT pbDirector_ID FROM pbDIRECTOR WHERE directorFirstName = 'George' AND directorLastName = 'Miller'),
+	(SELECT pbMovie_ID FROM pbMOVIE WHERE movieTitle = 'Mad Max'))
+
+INSERT
+INTO pbMOVIEACTOR (pbActor_ID, pbMovie_ID)
+VALUES ((SELECT pbActor_ID FROM pbACTOR WHERE actorFirstName = 'Tom' AND actorLastName = 'Hardy'),
+	(SELECT pbMovie_ID FROM pbMOVIE WHERE movieTitle = 'Mad Max'))
+
+-- insert 2nd actor
+
+INSERT
+INTO pbMOVIEGENRE (pbMovie_ID, pbGenre_ID)
+VALUES ((SELECT pbMovie_ID FROM pbMOVIE WHERE movieTitle = 'Mad Max'), (SELECT pbGenre_ID FROM pbGENRE WHERE genre = 'SciFi'))
+
+-- insert 2 movie items
+
+-- batch insert statments
+
+GO
+
+-- drop all stored procedures if they exist
+
+IF (OBJECT_ID('insertPhoneSproc') IS NOT NULL)
+DROP PROC insertPhoneSproc
+GO
+
+IF (OBJECT_ID('insertQuestionSproc') IS NOT NULL)
+DROP PROC insertQuestionSproc
+GO
+
+IF (OBJECT_ID('insertMovieGenreSproc') IS NOT NULL)
+DROP PROC insertMovieGenreSproc
+GO
+
+IF (OBJECT_ID('insertMovieDirectorSproc') IS NOT NULL)
+DROP PROC insertMovieDirectorSproc
+GO
+
+IF (OBJECT_ID('insertMovieActorSproc') IS NOT NULL)
+DROP PROC insertMovieActorSproc
+GO
+
+-- create stored procedures
+
+-- insert phone sproc
+
+CREATE PROC insertPhoneSproc
+AS
+	INSERT
+	INTO pbPHONENO (pbUser_ID, phoneNo)
+	VALUES ((SELECT pbUser_ID FROM pbUSER WHERE userFirstName = 'Jack' AND userLastName = 'McClellan'), '4505349987')
+
+GO
+
+-- insert question sproc
+
+CREATE PROC insertQuestionSproc
+AS
+	INSERT
+	INTO pbSECQUESTION (secQuestion)
+	VALUES ('What is the name of your pet?')
+GO
+
+-- insert movie genre sproc
+
+CREATE PROC insertMovieGenreSproc
+AS
+	INSERT
+	INTO pbMOVIEGENRE (pbMovie_ID, pbGenre_ID)
+	VALUES ((SELECT pbMovie_ID FROM pbMOVIE WHERE movieTitle = 'The Ring'),
+		(SELECT pbGenre_ID FROM pbGENRE WHERE genre = 'Horror'))
+GO
+
+-- insert movie director sproc
+
+CREATE PROC insertMovieDirectorSproc
+AS
+	INSERT
+	INTO pbMOVIEDIRECTOR (pbDirector_ID, pbMovie_ID)
+	VALUES ((SELECT pbDirector_ID FROM pbDIRECTOR WHERE directorFirstName = 'Gore' AND directorLastName = 'Verbinski'),
+		(SELECT pbMovie_ID FROM pbMOVIE WHERE movieTitle = 'The Ring'))
+GO
+
+-- insert movie actor sproc
+
+CREATE PROC insertMovieActorSproc
+AS
+	INSERT
+	INTO pbMOVIEACTOR (pbActor_ID, pbMovie_ID)
+	VALUES ((SELECT pbActor_ID FROM pbACTOR WHERE actorFirstName = 'Naomi' AND actorLastName = 'Watts'),
+		(SELECT pbMovie_ID FROM pbMOVIE WHERE movieTitle = 'The Ring'))
+GO
+
+-- insert new movie for director/actor/genre sprocs
+
+INSERT
+INTO pbMOVIE (movieTitle, movieDate)
+VALUES ('The Ring', GETDATE())
+
+INSERT
+INTO pbGENRE (genre)
+VALUES ('Horror')
+
+INSERT
+INTO pbDIRECTOR (directorFirstName, directorLastName)
+VALUES ('Gore', 'Verbinski')
+
+INSERT
+INTO pbACTOR (actorFirstName, actorLastName)
+VALUES ('Naomi', 'Watts')
+
+GO
+
+-- execute stored procedures, display/delete results
+
+-- execute/display/delete insertPhoneSproc
+
+EXEC insertPhoneSproc
+
+/*SELECT *
+FROM pbPHONENO*/
+
+DELETE pbPHONENO
+WHERE pbPhoneNo_ID = @@IDENTITY
+
+-- execute/display/delete insertQuestionSproc
+
+EXEC insertQuestionSproc
+
+/*SELECT *
+FROM pbSECQUESTION*/
+
+DELETE pbSECQUESTION
+WHERE pbSecQ_ID = @@IDENTITY
+
+-- execute/display/delete insertMovieGenreSproc
+
+EXEC insertMovieGenreSproc
+
+/*SELECT *
+FROM pbMOVIEGENRE*/
+
+DELETE pbMOVIEGENRE
+WHERE pbMovieGenre_ID = @@IDENTITY
+
+-- execute/display/delete insertMovieDirectorSproc
+
+EXEC insertMovieDirectorSproc
+
+/*SELECT *
+FROM pbMOVIEDIRECTOR*/
+
+DELETE pbMOVIEDIRECTOR
+WHERE pbMovieDirector_ID = @@IDENTITY
+
+-- execute/display/delete insertMovieActorSproc
+
+EXEC insertMovieActorSproc
+
+/*SELECT *
+FROM pbMOVIEACTOR*/
+
+DELETE pbMOVIEACTOR
+WHERE pbMovieActor_ID = @@IDENTITY
+
+-- batch sprocs
+GO
+
+-- drop getUserID function if exists
+IF EXISTS (SELECT * FROM sysobjects WHERE id=object_id(N'udf_getUserID'))
+DROP FUNCTION udf_UserID;
+GO
+
+-- create getUserID function
+CREATE FUNCTION udf_getUserID (@pbUserID NVARCHAR(10))
+RETURNS INT
+AS
+BEGIN
+	DECLARE @pbUser_ID INT;
+	
+	SELECT @pbUser_ID = pbUser_ID
+	FROM dbo.pbUSER
+	WHERE pbUserID = @PbUserID;
+	
+	IF @pbUser_ID IS NULL
+		SET @pbUser_ID = -1;
+		
+	RETURN @pbUser_ID;
+END
+GO
+
+-- drop getMovieItemID function if exists
+IF EXISTS (SELECT * FROM sysobjects WHERE id=object_id(N'udf_getMovieItemID'))
+DROP FUNCTION udf_MovieItemID;
+GO
+
+-- create getMovieItemID function
+CREATE FUNCTION udf_getMovieItemID (@pbMovieItemID NVARCHAR(10))
+RETURNS INT
+AS
+BEGIN
+	DECLARE @pbMovieItem_ID INT;
+	
+	SELECT @pbMovieItem_ID = pbMovieItem_ID
+	FROM dbo.pbMOVIEITEM
+	WHERE pbMovieItemID = @pbMovieItemID;
+	
+	IF @pbMovieItem_ID IS NULL
+		SET @pbMovieItem_ID = -1;
+		
+	RETURN @pbMovieItem_ID;
+END
+GO
+
+-- drop rentalHistory trigger
+IF EXISTS (SELECT * FROM sys.triggers WHERE name = N'udt_rentalHistory')
+DROP TRIGGER udt_rentalHistory;
+GO
+
+-- create rentalHistory trigger
+CREATE TRIGGER udt_rentalHistory
+ON pbRENTAL
+AFTER INSERT
+AS
+BEGIN
+	INSERT
+	INTO pbRENTALHISTORY (pbUser_ID, pbMovieItem_ID, rentalDate, lastChangedBy, lastChangedOn)
+	VALUES (SELECT pbUser_ID, pbMovieItem_ID, rentalDate FROM pbRENTAL WHERE pbRental_ID = (SELECT MAX(pbRental_ID) FROM pbRENTAL),
+		'admin', GETDATE())
+END
+GO
